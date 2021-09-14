@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+a{
+  text-decoration: none;
+}
+h1{
+  color: #603485;
+  font-size: 20px;
+}
+.root {
+    max-width: 345px;
+    background-color: #ffffff;
+    border-radius: 5px;
+  }
+
+  .CardActions{
+  padding:0  5rem ;
+  }  
+
+  .action {
+    margin-top: 1rem;
+    display: inline;
+  }
+
+  .CardActions > p{  
+  display: inline;
+/* float:left;    */
+text-align:center;
+align-items: center;
+/* border:1px solid rgb(43, 192, 68);  */
+justify-content: center;
+}
+
+.cardHeader >h1{
+  padding-left: 0;
+  padding-right: 5px;
+  text-align: center;
+  
+    
+}
+.cardHeader> button{
+  float: right;
+  padding:10px;
+  align-items: center;
+  justify-content:right;
+  text-align: right;
+  border: none;
+  background: none;
+}
+
+  .cardMedia {
+  
+  padding-top: '56.25%';
+      /* 16:9  */
+}
+.cardMedia >img{
+  max-width:100% ;
+
+}
+.add-basket {
+  flex-grow: 1;
+  font-size:25px;
+  text-align:center;
+  padding: 5px;
+  color: #6a3b91;
+  cursor: pointer;
+}   
+.delete{
+  padding:0 10px;
+  background-color: #eee1f8;
+  font:1em sans-serif ;
+
+  border-radius: 4px;
+}
+.delete>i{
+  color: #232125;
+  padding-left: 5px;
+}
+.remove{
+  padding: 10px;
+}
+.remove:hover{
+  color: #8d789e;
+}
