@@ -9,6 +9,8 @@ const products =[
     rating:3,
     description:
     "zapatos nike para correr",
+    review:
+    'Una reseña de producto es la opinión que el cliente de un negocio, tanto físico como digital, puede manifestar por escrito y que hace referencia a la satisfacción o decepción que le ha producido el producto que ha adquirido en una tienda.'
   },
    {
     id:2,
@@ -19,6 +21,9 @@ const products =[
     rating:4,
     description:
     "zapatos deportivos adiddas",
+    review:
+    'Una reseña de producto es la opinión que el cliente de un negocio, tanto físico como digital, puede manifestar por escrito y que hace referencia a la satisfacción o decepción que le ha producido el producto que ha adquirido en una tienda.'
+ 
   },
    {
     id:3,
@@ -29,6 +34,9 @@ const products =[
     rating:2,
     description:
     " zapatos para el dia dia",
+    review:
+    'Una reseña de producto es la opinión que el cliente de un negocio, tanto físico como digital, puede manifestar por escrito y que hace referencia a la satisfacción o decepción que le ha producido el producto que ha adquirido en una tienda.'
+ 
   },
    {
     id:4,
@@ -39,6 +47,9 @@ const products =[
     rating:4,
     description:
     "zapatos formales",
+    review:
+    'Una reseña de producto es la opinión que el cliente de un negocio, tanto físico como digital, puede manifestar por escrito y que hace referencia a la satisfacción o decepción que le ha producido el producto que ha adquirido en una tienda.'
+ 
   },
    {
     id:5,
@@ -49,6 +60,9 @@ const products =[
     rating:5,
     description:
     "zapatos casuales para uso diario",
+    review:
+    'Una reseña de producto es la opinión que el cliente de un negocio, tanto físico como digital, puede manifestar por escrito y que hace referencia a la satisfacción o decepción que le ha producido el producto que ha adquirido en una tienda.'
+ 
   },
     
 ]

@@ -2,14 +2,16 @@ import React, {useState}from 'react';
 import './css/Login.css'
 import {Link as RouteLink , useHistory} from 'react-router-dom';
 import { auth } from '../Firebase';
+
+
 export default function SignIn() {
   const [email, setEmail] =useState('');
   const [password, setPassword]= useState('');
   const history = useHistory();
 
    const ingresar =(e)=>{
-        e.preventDefault();
-        auth.signInWithEmailAndPassword(email,password).then((auth)=>history.pushState('/')).cath(err=>alert(err.message));
+        e.preventDefault();/*no refrescar la pagina*/
+        auth.signInWithEmailAndPassword(email,password).then((auth)=>history.push('/')).cath(err=>alert(err.message));
   }
 
   return (

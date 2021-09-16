@@ -1,8 +1,8 @@
 import "./App.css";
 import NavBar from "./components/NavBar";
 import CheckoutPage from "./components/CheckoutPage";
-import Producto from "./components/Producto";
 import Products from "./components/Products";
+import Checkout from "./components/checkoutForm/CheckOut"
 import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/Register";
@@ -13,7 +13,8 @@ import { actionTypes } from "./reducer";
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
-
+/*Escucha si hay algun cambio de usuario o en el usuario:
+inyecta el usuario */
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       console.log(authUser);
@@ -44,12 +45,13 @@ function App() {
               <Route path="/checkout-page">
                 <CheckoutPage />
               </Route>
+               <Route path="/CheckOut">
+                <Checkout />
+              </Route>
               <Route>
                 <Products />
               </Route>
-              <Route  path="/Description">
-                <Producto/>
-              </Route>
+
             </Switch>
           </section>
         </body>

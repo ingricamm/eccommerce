@@ -5,18 +5,13 @@ import './css/Producto.css';
 import { useStateValue } from '../StateProvider';
 import { actionTypes } from '../reducer';
 import "../fontello/css/fontello.css";
-import { Link } from "react-router-dom";
-import { NoEncryption } from "@material-ui/icons";
+
+
 
 
 export default function Product({product:{id,name,productType,image,price,rating,description}}) {
   const [{basket}, dispatch] = useStateValue();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
+ 
   const addToBasket= () =>{
     dispatch({
       type: actionTypes.ADD_TO_BASKET,
@@ -37,14 +32,15 @@ export default function Product({product:{id,name,productType,image,price,rating
     <Fragment>
      
       <div className='root' >
-        <a href='/Description'>
+      
          <div className='cardHeader'>
               <button aria-label="add-to-car" onClick={addToBasket}>
               <i className ='icon-basket add-basket' />
-            </button>
+            </button> 
+             <a href='/Description'>
             <h1>{name}</h1>
-             
-          </div>  
+             </a>
+         </div>  
             <h4>in stock</h4>
         
         <div className='cardMedia'>
@@ -67,7 +63,7 @@ export default function Product({product:{id,name,productType,image,price,rating
         </div>
       {/* encabezado de la tarjeta */}
           <div className='CardContent'>
-              <p paragraph>{description}</p>
+              <p className='description'>{description}</p>
           </div>
           <div className='CardActions' disableSpacing>
             {/* puntuacion del producto: muestra cierto numero de estrellas dependiendo de la puntuacion que tenga el producto */}
@@ -77,8 +73,9 @@ export default function Product({product:{id,name,productType,image,price,rating
               <p>&#11088;</p>
             ))
             }
+         
           </div>
-          </a>
+          
       </div>
   
     </Fragment>

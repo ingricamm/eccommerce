@@ -61,7 +61,8 @@ export default function NavBar() {
             </li >
             <li className='item-login'>
                 <Link to ='/signin'>
-                    <a href='/' className='button-login'  style={{color:'white', textDecoration:' none'}} onClick={handleAuth}>{user?'sign out ':'login'}</a>
+                    <a href='/' className='button-login'  style={{color:'white', textDecoration:' none'}} onClick={handleAuth}>
+                      {user?'sign out ':'login'}</a>
                     {/* una vez el usuario inicia seccion se cambia el singin por sign out */}
                 </Link>
             </li>
