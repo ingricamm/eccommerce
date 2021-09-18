@@ -1,109 +1,54 @@
+import { Grid } from '@material-ui/core';
 import * as React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+import {useForm, FormProvider} from 'react-hook-form';
+import { Link } from 'react-router-dom';
+import  AddressInput  from './AddressInput';
+import { actionTypes } from '../../reducer';
+import {useStateValue} from '../../StateProvider'
 
-export default function AddressForm() {
+const AddressForm=({nextStep}) => {
+  const methods =useForm(); 
+  const [{shippingData}, dispatch] = useStateValue();
+
+
   return (
-    <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Shipping address
-      </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="firstName"
-            name="firstName"
-            label="First name"
-            fullWidth
-            autoComplete="given-name"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="Last name"
-            fullWidth
-            autoComplete="family-name"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            required
-            id="address1"
-            name="address1"
-            label="Address line 1"
-            fullWidth
-            autoComplete="shipping address-line1"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="address2"
-            name="address2"
-            label="Address line 2"
-            fullWidth
-            autoComplete="shipping address-line2"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="city"
-            name="city"
-            label="City"
-            fullWidth
-            autoComplete="shipping address-level2"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            id="state"
-            name="state"
-            label="State/Province/Region"
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="zip"
-            name="zip"
-            label="Zip / Postal code"
-            fullWidth
-            autoComplete="shipping postal-code"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="country"
-            name="country"
-            label="Country"
-            fullWidth
-            autoComplete="shipping country"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-            label="Use this address for payment details"
-          />
-        </Grid>
-      </Grid>
-    </React.Fragment>
+   
+   
+   <>
+    <div>
+      <h6 className='title'>Shopping Address</h6>
+    </div>
+    <FormProvider {...methods}>
+      {/*El onsubmit Toma los datos que hemos recolecctado con los input */}
+       <form onSubmit={methods.handleSubmit(data=>{
+          dispatch({
+            /*los datos tomados con el onsubmit los pasa al shipping data */
+            type:actionTypes.SET_SHIPPING_DATA,
+            shippingData:data,
+          });
+          /*Para hacer el cambio de pestaña llamamos el boton next que se encuentra en check out
+          dicho boton es pasado como props para poder ser usado */
+            nextStep();
+       })}>
+          <Grid container spacing={2}>
+            <AddressInput required name='firstName' label ='Frist Name'/>
+            <AddressInput required name='lastName' label ='Last Name'/>
+            <AddressInput required name='address' label ='Address'/>
+            <AddressInput required name='email' label ='Email'/>
+            <AddressInput required name='postcode' label ='Post Code'/>
+            <AddressInput required name='city' label ='city'/>
+          </Grid>
+          <div className='stylebutton'>
+            <Link to ='/checkout-page'>
+              <button className='Prev' >Back to check out page</button>
+           </Link>
+          <button className='Next' type='submit'>Next</button>
+          </div>
+          
+        </form>
+    </FormProvider>
+   
+   </>
   );
 }
+export default AddressForm

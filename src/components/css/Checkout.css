@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.paper{
+    max-width: 800px;
+    margin: auto;
+    position: relative;
+    padding: 20px !important;
+}
+.Prev, .Next{
+    position: relative;
+    padding: .8rem;
+    
+    color: #ffffff;
+    background-color: #270638;
+    border-radius: 3px;
+    border-color: none;
+    border:none !important;
+    
+}
+.stylebutton{
+    margin-top: 20px;
+    display:flex;
+    justify-content: space-between;
+}
