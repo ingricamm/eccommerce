@@ -4,7 +4,7 @@ import "../fontello/css/fontello.css";
 import { Badge } from '@material-ui/core';
 import { useStateValue } from '../StateProvider';
 import { auth } from '../Firebase';
-import { actionTypes } from '../reducer';
+import { TYPES } from './actions/ShoppingCartAction';
 import { useHistory } from 'react-router';
 import logo from './imagenes/logo/Logo.png';
 /*importar los iconos de material ui */
@@ -20,13 +20,13 @@ export default function NavBar() {
      if (user) {
        auth.signOut();
        dispatch({
-         type: actionTypes.EMPTY_BASKET,
+         type: TYPES.EMPTY_BASKET,
         basket: [],
        
       });
       /*Es necesario poner null en el usuario para que aparezca el saludo de bienvenida general  */
       dispatch({
-        type: actionTypes.SET_USER,
+        type: TYPES.SET_USER,
         user: null,
       });
       history.push("/")

@@ -9,7 +9,8 @@ import SignUp from "./components/Register";
 import { useEffect } from "react";
 import { auth } from "./Firebase";
 import { useStateValue } from "./StateProvider";
-import { actionTypes } from "./reducer";
+import { TYPES } from "./components/actions/NavbarAction";
+
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -20,7 +21,7 @@ inyecta el usuario */
       console.log(authUser);
       if (authUser) {
         dispatch({
-          type: actionTypes.SET_USER,
+          type: TYPES.SET_USER,
           user: authUser,
         });
       }

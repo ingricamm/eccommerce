@@ -1,7 +1,7 @@
 import React from 'react';
 import './css/Producto.css'
 import { useStateValue } from '../StateProvider';
-import { actionTypes } from '../reducer';
+import { TYPES} from './actions/ShoppingCartAction';
 
 /*import accounting from 'accounting'; formato de moneda ex: dolar, euro*/
 
@@ -10,7 +10,7 @@ export default function CheckoutCard({product:{id,name,productType,image,price,r
 const [{basket}, dispatch] = useStateValue();
 
    const removeItem =()=> dispatch({
-    type: actionTypes.REMOVE_ITEM,
+    type: TYPES.REMOVE_ITEM,
     id:id,
    })
 

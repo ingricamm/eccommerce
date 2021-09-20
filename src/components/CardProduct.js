@@ -3,8 +3,10 @@
 import React,{Fragment, useState} from "react";
 import './css/Producto.css';
 import { useStateValue } from '../StateProvider';
-import { actionTypes } from '../reducer';
+import { TYPES} from './actions/ShoppingCartAction';
 import "../fontello/css/fontello.css";
+import Contador from "./Contador";
+
 
 
 
@@ -14,7 +16,7 @@ export default function Product({product:{id,name,productType,image,price,rating
  
   const addToBasket= () =>{
     dispatch({
-      type: actionTypes.ADD_TO_BASKET,
+      type: TYPES.ADD_TO_BASKET,
 
       item:{
         id,
@@ -75,6 +77,7 @@ export default function Product({product:{id,name,productType,image,price,rating
             }
          
           </div>
+        <Contador/>
           
       </div>
   

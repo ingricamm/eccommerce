@@ -41,7 +41,7 @@ return(
             Checkout
         </h1>
         <div className='steps'>
-           <Stepper activeStep={0}>
+           <Stepper activeStep={activeStep}>
               {steps.map(step=>
               <Step key={step}>
                 <StepLabel>

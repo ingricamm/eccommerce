@@ -3,7 +3,7 @@ import * as React from 'react';
 import {useForm, FormProvider} from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import  AddressInput  from './AddressInput';
-import { actionTypes } from '../../reducer';
+import { TYPES } from './../actions/ShoppingCartAction';
 import {useStateValue} from '../../StateProvider'
 
 const AddressForm=({nextStep}) => {
@@ -23,7 +23,7 @@ const AddressForm=({nextStep}) => {
        <form onSubmit={methods.handleSubmit(data=>{
           dispatch({
             /*los datos tomados con el onsubmit los pasa al shipping data */
-            type:actionTypes.SET_SHIPPING_DATA,
+            type:TYPES.SET_SHIPPING_DATA,
             shippingData:data,
           });
           /*Para hacer el cambio de pestaña llamamos el boton next que se encuentra en check out
