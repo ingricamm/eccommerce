@@ -1,19 +1,34 @@
-import React from "react";
+import React, { useEffect, useReducer } from 'react';
 import { Link } from 'react-router-dom';
-import "../fontello/css/fontello.css";
+import '../fontello/css/fontello.css';
 import { Badge } from '@material-ui/core';
-import { useStateValue } from '../StateProvider';
 import { auth } from '../Firebase';
 import { TYPES } from './actions/ShoppingCartAction';
 import { useHistory } from 'react-router';
 import logo from './imagenes/logo/Logo.png';
 /*importar los iconos de material ui */
 import'./css/NavBar.css';
+import { shoppingInitialState, shoppingReducer } from './reducers/ShoppingCartReducer';
+import { useStateValue } from '../StateProvider';
 
 export default function NavBar() {
   
-    const [{ basket, user }, dispatch] = useStateValue();
+    const [{ basket, user,cart }, dispatch] = useStateValue();
+;
     const history = useHistory();
+ /*Escucha si hay algun cambio de usuario o en el usuario:
+inyecta el usuario */
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      console.log(authUser);
+      if (authUser) {
+        dispatch({
+          type: TYPES.SET_USER,
+          user: authUser,
+        });
+      }
+    });
+  });
 
     /*Si el suario cierra seccion se eliminan los elementos cargados en el carrito de compas  */
     const handleAuth = () => {
@@ -29,7 +44,7 @@ export default function NavBar() {
         type: TYPES.SET_USER,
         user: null,
       });
-      history.push("/")
+      history.push('/')
     }
   }
   
@@ -47,14 +62,14 @@ export default function NavBar() {
           <ul className='navBar-items'>
             <li className='item-mensaje'>
                 <div>
-                    <p className='mensaje'>Hellow {user? user.email: "guest"}</p>
+                    <p className='mensaje'>Hellow {user? user.email: 'guest'}</p>
                     {/* cambia el mensaje de bienvenida cuando el usuario inicia sesion */}
                 </div>
             </li>
             <li className='item-search'>
                 <div>
-                  <input/>
-                  <button className='buttonSearch'> 
+                  <input type='search'/>
+                  <button type='search' className='buttonSearch'> 
                      <i className='icon-search' /> 
                   </button>
                 </div>
@@ -69,7 +84,7 @@ export default function NavBar() {
             <li className='item-cart'>
                 <Link to='/checkout-page'>
                    {/* uso Bagbe de @material para crear el numero que se muestra en el carrito a medida en que agrego productos */}
-                  <Badge badgeContent={basket?.length} color='secondary'>
+                  <Badge badgeContent={cart?.length} color='secondary'>
                      <i className='icon-basket' />
                   </Badge>
                 </Link>

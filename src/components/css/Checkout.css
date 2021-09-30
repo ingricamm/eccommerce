@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
 }
+
 .paper{
     max-width: 800px;
     margin: auto;
@@ -24,3 +25,7 @@
     display:flex;
     justify-content: space-between;
 }
+
+/*total*/
+
+  

@@ -5,7 +5,7 @@
 
 }
 i{
-    color:rgb(255, 255, 255);
+   
     font-size: 1.5em;
 
  
@@ -16,7 +16,7 @@ i{
      padding-left: 3px;
      font-size:18px;
      text-align:center;
-     color: #ffffff !important;
+     color: #292f31 !important;
      cursor: pointer;
      text-decoration-line: none !important;
 }  
@@ -25,10 +25,11 @@ i{
 .buttonSearch{
     border: none;
     margin: 0.05rem;
-   width: 70px; 
+   width: 50px; 
+   cursor: pointer;
    align-items: center;
-    border-radius: 0 40px 40px 0;
-    background-color: rgba(201, 200, 197, 0.11);
+    border-radius: 0 5px 5px 0;
+    background-color: rgba(157, 215, 230, 0.459);
 } 
 
 .home{
@@ -56,18 +57,18 @@ i{
 }   
 .item-search{
    align-items: center;
-    width: 500px;
-    cursor: pointer;
+    width: 600px;
     box-sizing: border-box;
    
 }
 
  .item-search > div{
     width: 100%;
+    height: 35px;
     display: flex; 
      cursor: pointer;
-     background-color: #8b8888;
-     border-radius: 40px;
+     background-color: rgba(157, 215, 230, 0.459);
+     border-radius: 5px;
     /* border:2px solid  black;
     
     border-radius: 5px; */ /* -webkit-transition: background .55s ease;
@@ -80,14 +81,24 @@ i{
 }
 .item-search input{
     background-color: rgba(255, 255, 255, 0.096)0;  
-    border-radius: 40px 0 0 40px  ;
+    border-radius: 5px 0 0 5px  ;
     flex-grow: 1;
-    margin: 0.05rem;
-    padding: 2px 0 0 2px;
+    margin: 0.2em;
+    padding: 0px 0 0 2px;
     border: none;
    
 
 }
+.item-search>input:invalid+span:after {
+  content: '✖';
+  padding-right: 5px;
+  margin: 5px;
+}
+
+/* .item-search>input:valid+span:after {
+  content: '✓';
+  padding-left: 5px;
+} */
 .item-mensaje{
     min-width:40%;
      font-size: 18px;
@@ -113,10 +124,10 @@ i{
     flex-grow: 1;
     align-items: baseline;
     display:flex;
-    background-color: hsl(276, 64%, 9%) ;
+    background-color: hsl(198, 70%, 91%) ;
     width: 100%  ; 
     text-align: center; 
-    height:66px;
+    height:80px;
     justify-content: space-between;
      /* border:2px solid  rgb(64, 228, 99);  */
    
@@ -138,6 +149,7 @@ i{
 
 .navBar-items >li{
 float:left;
+
 list-style-type: none;    
 padding:0 14px ;
 text-align:center;

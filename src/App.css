@@ -27,7 +27,8 @@
 }
 
 body{
-  background-color: rgb(237, 238, 250);
+  background-color: rgba(237, 248, 250, 0.719);
   max-width: 100%;
   align-items: center;
 }
+

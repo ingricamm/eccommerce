@@ -1,7 +1,6 @@
 import React from 'react';
 import { useStateValue } from '../../StateProvider';
-import { TYPES } from './../actions/ShoppingCartAction';
-import { getBasketTotal } from '../reducers/ShoppingCartReducer';
+import Total from '../Total';
 
 const Review = () => {
   const [{basket},dispatch]=useStateValue();
@@ -21,7 +20,7 @@ const Review = () => {
         )
           )
       }
-    {getBasketTotal(basket)}  
+    {Total}  
     </ul>
       
     </>

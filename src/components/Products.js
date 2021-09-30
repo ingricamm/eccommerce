@@ -4,7 +4,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Product from './CardProduct';
-import products from '../ProductData'
+import {products} from '../ProductData'
 
 const useStyles = makeStyles((theme) => ({
   root: {

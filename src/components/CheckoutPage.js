@@ -1,44 +1,42 @@
-import React from "react";
-import { Grid } from "@material-ui/core";
-import { useStateValue } from '../StateProvider';
+import React from 'react';
 /*import products from '../ProductData' solucion temporal para ver datos que tengo*/
-import CheckoutCard from "./CheckOutCard";
-import Total from "./Total";
-
-
+import CheckoutCard from './CheckOutCard';
+import Total from './Total';
+import { products } from '../ProductData';
+import { useStateValue } from '../StateProvider';
+import { TYPES } from './actions/ShoppingCartAction';
+import './css/CheckoutPage.css';
 
 const CheckoutPage =()=>{
     const [{basket}, dispatch] = useStateValue();
-
-    function FormRow(){
-        return(
-           <>
-           {basket?.map((item)=>(
-              <Grid item xs={12} sm={6} md={4} lg={3}>
-                     <CheckoutCard key={item.id} product={item}/>
-                </Grid> 
-           ))}
-           </> 
-        ); 
+     const delFromCart = (id, all = false) => {
+    //console.log(id, all);
+    if (all) {
+      dispatch({ type: TYPES.REMOVE_ALL_FROM_BASKET, payload: id });
+    } else {
+      dispatch({ type: TYPES.REMOVE_ONE_FROM_BASKET,payload: id});
     }
-
+  };
     return(
-        <div className='total-card'>
-            <Grid container spacing={2}>
-                <Grid item xs={12}>
+        <div className='.paper'>
                     <h2 align ='center' gutterBottom variant='h4'>
                         Shopping Cart
                     </h2>
-                </Grid>
-               <Grid item xs={12} sm={8} md={9} container spacing={2}>
-                   <FormRow/>
-               </Grid>
-               <Grid item xs={12} sm={4} md={3}>
-                   <h3 align-item ='center' >
-                   <Total/>
-                    </h3>
-               </Grid>
-            </Grid>
+                    <div className='check-container'>
+                            <article className='box'>
+                                {basket?.map((item)=>(
+                                    <div className='item'>
+                                    <CheckoutCard key={item.id} product={item} data={products} delFromCart={delFromCart} />
+                                    </div>  
+                                ))}
+                            </article>
+                            <div className='card-total'>
+                                <Total/>
+                            </div>
+                        {/* <button onClick={clearCart}>Limpiar Carrito</button> */}
+                    </div>
+                   
+        
          </div>
         
     );

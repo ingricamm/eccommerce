@@ -1,41 +1,40 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import {getBasketTotal} from './reducers/ShoppingCartReducer';
-import { useStateValue } from '../StateProvider';
+import React, { useReducer } from "react";
+import { Link } from "react-router-dom";
+import CurrencyFormat from "react-currency-format";
+import { useStateValue } from "../StateProvider";
+import { useHistory } from "react-router";
+import "./css/Total.css";
 
+const Total = () => {
+  const history = useHistory();
+  const [{ basket, cart }] = useStateValue();
 
+  const getBasketTotal = basket?.reduce(
+    (amount, { price, quantity }) => amount + price * quantity,
+    0
+  );
 
-const Total = () =>{
-    const [{basket}, dispatch] = useStateValue();
+  console.log(getBasketTotal);
+  return (
+    <div className="total">
+      <h2>Total</h2>
+      <h4>
+        items:
+        <span>{cart.length}</span>
+      </h4>
+      <h3>Subtotal</h3>
+      <CurrencyFormat
+        decimalScale={2}
+        formattedValue={getBasketTotal}
+        displayType={"text"}
+        thousandSeperator={true}
+        prefix={"$"}
+      />
+      <Link to="/checkout">
+        <button className="button-check">Check out</button>
+      </Link>
+    </div>
+  );
+};
 
-    const style = {
-    with:'800px',
-    margin: '0.5em',
-    padding: '10px',
-    borderRadius:'5px',
-    backgroundColor:'white',
-  };
-
-    const Button = {
-    margin: '1em',
-    padding: '10px',
-    backgroundColor:'#d1a4eccc',
-    border:'none',
-    borderRadius:'5px',
-    
-  }
-
-    return(
-        <div className='total' style={style}>
-            <h3>Total</h3>
-            {/* mostrar la cantidad e productos que tiene  en el carrito */}
-            <h5>Total:{getBasketTotal(basket)}</h5>
-           <h4>items:{ basket?.length}</h4>
-             <Link to ='/checkout'>
-            <button className='button' style={Button} color='secondary'>Check out</button>
-            </Link>
-        </div>
-    )
-}
-
-export default Total
+export default Total;

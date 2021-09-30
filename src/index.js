@@ -4,11 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { StateProvider } from './StateProvider';
-import ShoppingCartreducer, { shoppingInitialState } from './components/reducers/ShoppingCartReducer';
-
+import {shoppingInitialState,shoppingReducer} from './components/reducers/ShoppingCartReducer'
 ReactDOM.render(
   <React.StrictMode>
-    <StateProvider initialState={shoppingInitialState} reducer={ShoppingCartreducer}>
+    <StateProvider initialState={shoppingInitialState} reducer={shoppingReducer} >
       <App />
     </StateProvider>
   </React.StrictMode>,
