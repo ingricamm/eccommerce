@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+h4{
+  font-size: 18px;
+  
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.total-card {
+    margin:0;
+    padding: 10px;
+    border-radius:5px;
+    box-shadow: 0 0 1rem #00000025 inset;
+    background-color: #ffffff6e;
+   
+  };
+.total-card >h2{
+  margin-bottom: 5px;
+  border-bottom: rgba(117, 115, 115, 0.062) solid 1px;
+}
+  .button-check {
+    margin: 2em;
+    padding:15px;
+    background-color:#4d097475 !important;
+    border:none;
+    border-radius:5px;
+
+   }
+   .total-items{
+     margin: 1rem;
+     border-top:rgba(0, 0, 0, 0.26) solid 1px !important;
+     background-color:rgb(255, 255, 255)  !important; 
+     }

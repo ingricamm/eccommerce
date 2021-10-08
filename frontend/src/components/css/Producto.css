@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box  !important;
+
+}
+/*HOMESCREEN PRODUCTS*/
+.container{
+   max-width: 95%;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+}
+.grid-responsive {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.grid-responsive li {
+  list-style-type: none;
+  flex:0 1 12rem ;
+  padding: 0;
+  margin: .7rem;
+  height: 35rem;
+  
+  border-bottom: 0.1rem #c0c0c0 solid;
+}
+/*CARD PRODUCTS SCREEN*/
+
+input[type=number] {
+   -moz-appearance:textfield;
+width: 30px;
+margin-left: .5rem;
+border-color:black ;
+border: none !important;
+background-color: transparent;
+}
+::placeholder {
+  color: rgb(0, 0, 0);
+  font-size: 1em;
+
+ }
+
+
+.card-product {
+    width: 210px;
+    background-color: #f8eee6;
+    border:  rgba(0, 0, 0, 0.171) solid 1px;
+    margin: 0;
+    justify-content: center;
+    height: 100%;
+  }
+ .cantidad {
+   padding: .1rem;
+   margin: auto;
+   justify-content: center; 
+   width: 100px;
+   font-size: 12px;
+   border: #00000057 solid 1px !important;
+  
+ 
+ }
+  
+  .CardActions > p{  
+  display: inline;
+/* float:left;    */
+text-align:center;
+align-items: center;
+/* border:1px solid rgb(43, 192, 68);  */
+justify-content: center;
+}
+
+.cardHeader> button{
+  float: right;
+  padding:10px;
+  align-items: center;
+  justify-content:right;
+  text-align: right;
+  border: none;
+  background: none;
+}
+
+ .product-image{
+  max-width:100% !important ;
+  display:inline;
+
+}
+
