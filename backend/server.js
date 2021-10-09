@@ -1,12 +1,11 @@
-'use strict';
 
 import express from 'express';
-import products from './ProductData'
+import data from './ProductData.js'
 
-const app = express();
+ const app = express();
 
-app.get('/api/product',(req,res) =>{
-    res.Send(products.item);
-});
+app.get("/product/", (req, res) => {
+    res.send(data.products);
+})
 
-app.listen(5000,()=>{console.log("server started at http://localhost:5000")})
+app.listen(5000, () => {console.log("server started at http://localhost:5000")})

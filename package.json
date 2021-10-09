@@ -1,18 +1,17 @@
 {
   "name": "ecommerce2021",
   "version": "1.0.0",
- "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --experimental-modules --es-module-specifier-resolution=node index.js",
-    "build": "rm -rf dist && babel backend -d dist  && cd frontend && npm install && npm run build",
-    "heroku-postbuild-x": "npm run build && cd frontend && npm install && npm run build"
+    "start": "nodemon --watch backend --exec babel-node backend/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ingricamm/eccommerce.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -20,25 +19,13 @@
   },
   "homepage": "https://github.com/ingricamm/eccommerce#readme",
   "dependencies": {
-    "@babel/cli": "^7.15.7",
-    "@babel/core": "^7.15.5",
-    "@babel/node": "^7.15.4",
-    "@babel/preset-env": "^7.15.6",
-    "all": "^0.0.0",
-    "aws-sdk": "^2.1001.0",
-    "babel-cli": "^6.26.0",
-    "body-parser": "^1.19.0",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "jquery": "^3.6.0",
-    "jquery-migrate": "^3.3.2",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.9",
-    "multer": "^1.4.3",
-    "multer-s3": "^2.9.0",
-    "nodemon": "^2.0.13"
+    "express": "^4.17.1"
   },
   "devDependencies": {
-    "eslint": "^7.32.0"
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.8",
+    "@babel/node": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "nodemon": "^2.0.13"
   }
 }

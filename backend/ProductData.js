@@ -1,6 +1,6 @@
 
-  const 
-    products=[
+  export default{
+    products:[
   {
     id:'1',
     name:'shoes NIKE',
@@ -86,5 +86,5 @@
     },
   ]
     
-export default products
+  }
 
