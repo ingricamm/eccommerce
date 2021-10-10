@@ -1,21 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CurrencyFormat from "react-currency-format";
-import { useStateValue } from "../StateProvider";
 import { useHistory } from "react-router";
-import "./css/Total.css";
 import {currency} from './reducers/CartReducer'
+import { useSelector } from "react-redux";
 
-const Total = () => {
+const Total = (props) => {
+ 
   const history = useHistory();
-  const [{ basket, cart }] = useStateValue();
-  
-  const getBasketTotal = basket?.reduce(
-    (amount, { price, quantity }) => amount + price * quantity,
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+  const checkoutHandler = () => {
+    props.history.push("/signin?redirect=shipping");
+  }
+
+  const getTotalItems = cartItems?.reduce(
+    (amount, { qty }) => amount + qty,
+    0
+  );
+  const getCartTotal = cartItems?.reduce(
+    (amount, { price, qty }) => amount + price * qty,
     0
   );
 
-  console.log(getBasketTotal);
+  console.log(getCartTotal);
   return (
     <div className="total-card">
       <h2>Total</h2>
@@ -23,14 +31,14 @@ const Total = () => {
           <h4>
             items:
           </h4>
-          <p>{cart.length}</p>
+          <p>{getTotalItems}</p>
       
       <div>
         <h3>Subtotal</h3>
-       <b> {currency(getBasketTotal)}</b>
+       <b> {currency(getCartTotal)}</b>
         <CurrencyFormat
             decimalScale={2}
-            Value={getBasketTotal}
+            Value={getCartTotal}
             displayType={'text'}
             thousandSeperator={true}
             prefix={'$'}
@@ -41,7 +49,7 @@ const Total = () => {
         
       </div>
       <Link to="/checkout">
-        <button className="button-check">Check out</button>
+        <button className="button-check" onClick={checkoutHandler} diseable ={cartItems===0}>Check out</button>
       </Link>
       </div>
     </div>

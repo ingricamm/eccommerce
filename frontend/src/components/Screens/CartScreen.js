@@ -1,135 +1,93 @@
-import React from "react";
+import React, { useEffect } from "react";
 /*import products from '../ProductData' solucion temporal para ver datos que tengo*/
 import Total from "../Total";
-import { useStateValue } from "../../StateProvider";
 import { TYPES } from "../constants/cartConstants";
-import "../css/CheckoutPage.css";
-import "../css/Total.css";
-import { useSelector } from "react-redux";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faChevronLeft,
-  faChevronRight,
-} from '@fortawesome/free-solid-svg-icons';
-import '../css/CheckoutPage.css';
-import { currency } from '../reducers/CartReducer';
+import "../css/CartScreen.css";
+import { useDispatch, useSelector } from "react-redux";
+import { currency } from "../reducers/CartReducer";
+import { addToCart, removeFromCart } from "../actions/cartActions";
+import { Link } from "react-router-dom";
 
-function BasketScreen(props,{
-  product: {
-    id,
-    name,
-    productType,
-    image,
-    price,
-    rating,
-    description,
-    // quantity,
-    unidades,
-  }}) {
-  const basket = useSelector((state) => state.basket);
-
-  const { basketItems } = basket;
+function CartScreen(props) {
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
   const productId = props.match.params.id;
-  const quantity = props.location.search
+  const qty = props.location.search
     ? Number(props.location.search.split("=")[1])
     : 1;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(addToCart(productId, qty));
+  });
 
-  const [dispatch] = useStateValue();
-
-const addToBasket = (id, item) => {
-    dispatch({
-      type: TYPES.ADD_TO_BASKET,
-      item: {
-        id,
-        name,
-        price,
-        rating,
-        image,
-        unidades,
-        productType,
-        description,
-        quantity,
-      },
-      payload: id,
-    });
+  const removeFromCartHandler = (productId) => {
+    dispatch(removeFromCart(productId));
   };
 
-
-  const delFromCart = (id, all = false) => {
-    //console.log(id, all);
-    if (all) {
-      dispatch({ type: TYPES.REMOVE_ALL_FROM_BASKET, payload: id });
-    } else {
-      dispatch({ type: TYPES.REMOVE_ONE_FROM_BASKET, payload: id });
-    }
-  };
+   
+  
   return (
-    <div className=".paper">
+    <div className="paper">
       <div className="cart-list">
         <ul className="cart-list-container">
-          <li>
-            <h3>Shopping Cart</h3>
-            <div>Price</div>
+          <li className="cart-header">
+            <h2>Shopping Cart</h2>
+            <h2>Price</h2>
           </li>
-          {basketItems.length === 0 ? (
+          {cartItems.length === 0 ? (
             <div>Cart is empty</div>
           ) : (
-            basketItems.map((item) => (
+            cartItems.map((item) => (
               <li>
-                <div className='card'>
-                <div className='check-card'>
-                <img src={item.image} with='100px' />
-                <div className='check-card-content'>
-                    <h1>{item.name}</h1>
-                    {/* {accounting.formatMoney(50)} ejemplo de como aplicar la moneda en dolar aca*/}
-                    <p> {item.productType}</p>
-                    {/* encabezado de la tarjeta */}
-                    <p paragraph>{item.description}</p>
-
-                    <div className='quantity'>
-                    <label> Cantidad</label>
-                    <br />
-                    <button>
-                        <FontAwesomeIcon
-                        icon={faChevronLeft}
-                        onClick={() => delFromCart(item.id)}
-                        />
-                    </button>
-                    <span> {quantity} </span>
-                    <button>
-                        <FontAwesomeIcon
-                        icon={faChevronRight}
-                        onClick={() => addToBasket(item.id)}
-                        />
-                    </button>
-                    <br/>
-            
-                    <button onClick={() => delFromCart(item.id, true)}>
+                <div className="cart-card">
+                  <div className="check-card">
+                    <img src={item.image} alt="product" with="100px" />
+                    <div className="card-content">
+                      <Link to={"/product/" + item.product}>{item.name}</Link>
+                      <p> {item.productType}</p>
+                      {/* encabezado de la tarjeta */}
+                      <p paragraph>{item.description}</p>
+                      <div className="quantity">
+                        Qty:
+                        <select
+                          value={item.qty}
+                          onChange={(e) =>
+                            dispatch(addToCart(item.product, e.target.value))
+                          }
+                        >
+                          {[...Array(item.countInStock).keys()].map((x) => (
+                            <option key={x + 1} value={x + 1}>
+                              {x + 1}
+                            </option>
+                          ))}
+                        </select>
+                        {/* <button type="button" className="button" onClick={() => removeFromCartHandler(item.product)} >
+                      Delete
+                    </button> */}
+                      </div>
+                      <button onClick={() => removeFromCartHandler(item.product)}>
                         Eliminar item
-                        <i className='icon-trash-empty' fontSize='large' />
-                    </button>
+                        <i className="icon-trash-empty" fontSize="large" />
+                      </button>
                     </div>
+                  </div>
+                  <div className="price">
+                     <p className="productTotal"> {currency(item.price)}</p>
+                  </div>
                 </div>
-                <div className='price'>
-                    <p>Precio</p>
-                    <b>
-                    <p className='productTotal'> {currency(item.price)}</p>
-                    </b>
+                <div className="check-total">
+                  <p>subtotal ( {qty} productos )=</p>
+                  <b>
+                    <p>${currency(item.price * qty)} </p>
+                  </b>
                 </div>
-                </div>
-                <div className='check-total'>
-                <p>subtotal ( {quantity} productos )=</p>
-                <b><p>${currency(item.price* quantity)} </p></b>
-                </div>
-            </div>
-        </li>
+              </li>
             ))
           )}
-        </ul> 
-      <Total/> 
+        </ul>
+        <Total />
       </div>
- 
     </div>
   );
 }
-export default BasketScreen;
+export default CartScreen;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStateValue } from '../../StateProvider';
+import { useStateValue } from '../../Store';
 import Total from '../Total';
 
 const Review = () => {

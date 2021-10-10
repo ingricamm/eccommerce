@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../fontello/css/fontello.css";
 import { Badge } from "@material-ui/core";
-import { auth } from "../Firebase";
 import { TYPES } from "./constants/cartConstants";
 import { useHistory } from "react-router";
 import logo from "./imagenes/logo/Logo.png";
 /*importar los iconos de material ui */
 import "./css/NavBar.css";
-import { useStateValue } from "../StateProvider";
+import { useStateValue } from "../Store";
 import { useSelector } from "react-redux";
 import { listProducts } from "./actions/productActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -38,34 +37,34 @@ export default function NavBar(props) {
   const history = useHistory();
   /*Escucha si hay algun cambio de usuario o en el usuario:
         inyecta el usuario */
-  useEffect(() => {
-    auth.onAuthStateChanged((authUser) => {
-      console.log(authUser);
-      if (authUser) {
-        dispatch({
-          type: TYPES.SET_USER,
-          user: authUser,
-        });
-      }
-    });
-  });
+  // useEffect(() => {
+  //   auth.onAuthStateChanged((authUser) => {
+  //     console.log(authUser);
+  //     if (authUser) {
+  //       dispatch({
+  //         type: TYPES.SET_USER,
+  //         user: authUser,
+  //       });
+  //     }
+  //   });
+  // });
 
   /*Si el suario cierra seccion se eliminan los elementos cargados en el carrito de compas  */
-  const handleAuth = () => {
-    if (user) {
-      auth.signOut();
-      dispatch({
-        type: TYPES.EMPTY_BASKET,
-        basket: [],
-      });
-      /*Es necesario poner null en el usuario para que aparezca el saludo de bienvenida general  */
-      dispatch({
-        type: TYPES.SET_USER,
-        user: null,
-      });
-      history.push("/");
-    }
-  };
+  // const handleAuth = () => {
+  //   if (user) {
+  //     auth.signOut();
+  //     dispatch({
+  //       type: TYPES.EMPTY_BASKET,
+  //       basket: [],
+  //     });
+  //     /*Es necesario poner null en el usuario para que aparezca el saludo de bienvenida general  */
+  //     dispatch({
+  //       type: TYPES.SET_USER,
+  //       user: null,
+  //     });
+  //     history.push("/");
+  //   }
+  // };
 
    const submitHandler = (e) => {
     e.preventDefault();

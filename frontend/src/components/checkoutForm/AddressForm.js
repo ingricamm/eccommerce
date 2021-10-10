@@ -4,7 +4,7 @@ import {useForm, FormProvider} from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import  AddressInput  from './AddressInput';
 import { TYPES } from '../constants/cartConstants';
-import {useStateValue} from '../../StateProvider'
+import {useStateValue} from '../../Store'
 
 const AddressForm=({nextStep}) => {
   const methods =useForm(); 

@@ -1,11 +1,10 @@
 import './App.css';
 import NavBar from './components/NavBar';
-import CheckoutPage from './components/Screens/CartScreen';
 import Products from './components/Screens/HomeProductsScreen';
-import Checkout from './components/checkoutForm/CheckOut'
 import { Switch, BrowserRouter, Route, Link } from 'react-router-dom';
 import SignInScreen from './components/Screens/SignInScreen';
 import RegisterScreen from './components/Screens/RegisterScreen';
+import CartScreen from './components/Screens/CartScreen';
 import ProductScreen from './components/Screens/ProductScreen';
 import { useSelector } from 'react-redux';
 import ProductsScreen from './components/Screens/ProductsScreen';
@@ -51,12 +50,13 @@ function App() {
             <Route path='/profile' component={ProfileScreen} /> */}
             {/* <Route path='/order/:id' component={OrderScreen} /> */}
         <Switch>
-              <Route path='/signin' component={SignInScreen} />
+            <Route path='/signin' component={SignInScreen} />
             <Route path='/register' component={RegisterScreen} />
             <Route path='/products' component={ProductsScreen} />            
             <Route path='/product/:id' component={ProductScreen} />
+            <Route path='/cart/:id?' component={CartScreen} />
             <Route path='/' exact={true} component={Products} />
-          
+            
         </Switch>
             
             {/* <Route path='/cart/:id?' component={CartScreen} />

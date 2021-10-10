@@ -1,11 +1,9 @@
 import{createContext, useContext, } from 'react';
 import { createStore, combineReducers,  applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import Cookies from 'js-cookie';
+import Cookie from 'js-cookie';
 
-import{
-    shoppingReducer
-} from './components/reducers/CartReducer'
+import{ cartReducer } from './components/reducers/CartReducer'
 
 import {
 
@@ -32,27 +30,25 @@ import {
 } from './components/reducers/orderReducers';
 
 
-import  data  from './ProductData';
 
 export const StateContext = createContext();
 export const useStateValue =() => useContext(StateContext);
-const basketItems = Cookies.get('basketItems') || [];
-const userInfo = Cookies.get('userInfo') || null;
-// const basketItems = Cookies.getJSON('basketItems') || [];
+
+
+const cartItems = Cookie.get('cartItems') || [];
 // const userInfo = Cookies.getJSON('userInfo') || null;
+
 const initialState ={
-  basket:{ shipping: {}, payment: {} },
-  cart:0,
-  ItemInBasket:basketItems,
-  product:data,
-  user:userInfo ,
+   cart: { cartItems, shipping: {}, payment: {} },
+  
+  // user:userInfo ,
   
 };
 
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
-  basket: shoppingReducer,
+  cart: cartReducer,
   userSignin: userSigninReducer,
   userRegister: userRegisterReducer,
   productSave: productSaveReducer,
@@ -69,10 +65,10 @@ const reducer = combineReducers({
  
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(
+export const store = createStore(
   reducer,
   initialState,
   composeEnhancer(applyMiddleware(thunk))
 );
-export default store
+// Infer the `RootState` and `AppDispatch` types from the store itself
 
