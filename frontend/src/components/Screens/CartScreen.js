@@ -16,15 +16,18 @@ function CartScreen(props) {
     ? Number(props.location.search.split("=")[1])
     : 1;
   const dispatch = useDispatch();
+  
   useEffect(() => {
+    if (productId){
     dispatch(addToCart(productId, qty));
-  });
+  }
+},[]);
 
   const removeFromCartHandler = (productId) => {
     dispatch(removeFromCart(productId));
   };
 
-   
+  
   
   return (
     <div className="paper">

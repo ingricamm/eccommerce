@@ -1,6 +1,6 @@
 import './App.css';
 import NavBar from './components/NavBar';
-import Products from './components/Screens/HomeProductsScreen';
+import HomeProducts from './components/Screens/HomeProductsScreen';
 import { Switch, BrowserRouter, Route, Link } from 'react-router-dom';
 import SignInScreen from './components/Screens/SignInScreen';
 import RegisterScreen from './components/Screens/RegisterScreen';
@@ -15,9 +15,7 @@ function App() {
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
 
-  const openMenu = () => {
-    document.querySelector('.sidebar').classList.add('open');
-  };
+
   const closeMenu = () => {
     document.querySelector('.sidebar').classList.remove('open');
   };
@@ -55,8 +53,8 @@ function App() {
             <Route path='/products' component={ProductsScreen} />            
             <Route path='/product/:id' component={ProductScreen} />
             <Route path='/cart/:id?' component={CartScreen} />
-            <Route path='/' exact={true} component={Products} />
-            
+            <Route path='/' exact={true} component={HomeProducts} />
+           
         </Switch>
             
             {/* <Route path='/cart/:id?' component={CartScreen} />

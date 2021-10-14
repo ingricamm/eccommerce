@@ -1,6 +1,4 @@
-import {
-  TYPES
-} from '../constants/productConstants';
+import {TYPES} from '../constants/productConstants';
 
 import axios from 'axios';
 
@@ -21,7 +19,7 @@ const listProducts = (
       //   searchKeyword +
       //   '&sortOrder=' +
       //   sortOrder
-    
+      console.log(data)
     dispatch({ type: TYPES.PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: TYPES.PRODUCT_LIST_FAIL, payload: error.message });
@@ -67,7 +65,8 @@ const detailsProduct = (productId) => async (dispatch) => {
     dispatch({ type: TYPES.PRODUCT_DETAILS_FAIL, payload: error.message });
   }
 };
-console.log(detailsProduct)
+console.log(listProducts);
+
 
 const deleteProdcut = (productId) => async (dispatch, getState) => {
   try {

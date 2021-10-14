@@ -35,12 +35,11 @@ export const StateContext = createContext();
 export const useStateValue =() => useContext(StateContext);
 
 
-const cartItems = Cookie.get('cartItems') || [];
+//const cartItems = Cookie.get() || [];
 // const userInfo = Cookies.getJSON('userInfo') || null;
 
 const initialState ={
-   cart: { cartItems, shipping: {}, payment: {} },
-  
+ //cart: { cartItems, shipping: {}, payment: {} },
   // user:userInfo ,
   
 };

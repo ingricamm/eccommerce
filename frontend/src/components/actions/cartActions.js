@@ -7,7 +7,7 @@ const addToCart = (productId, qty) => async (dispatch, getState) => {
     const { data } = await Axios.get("/api/products/" + productId);
     dispatch({
       type: TYPES.ADD_ITEM_TO_CART, payload: {
-        product: data._id,
+        product: data.id,
         name: data.name,
         image: data.image,
         price: data.price,

@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CurrencyFormat from "react-currency-format";
-import { useHistory } from "react-router";
 import {currency} from './reducers/CartReducer'
 import { useSelector } from "react-redux";
 
 const Total = (props) => {
  
-  const history = useHistory();
   const cart = useSelector((state) => state.cart);
+  
   const { cartItems } = cart;
+  
   const checkoutHandler = () => {
     props.history.push("/signin?redirect=shipping");
   }

@@ -9,8 +9,6 @@
     image:'http://s2.r29static.com/bin/entry/ebd/0,675,2000,1050/x,80/1929471/image.jpg',
     rating:3,
     countInStock:10,
-    quantity:1,
-    subtotal:50000,
     description:
     'zapatos nike para correr',
      numReviews: 10,
@@ -25,8 +23,6 @@
     image:'https://s3.r29static.com//bin/entry/7af/0,587,2832,2832/x,80/1752991/image.jpg',
     rating:4,
     countInStock:8,
-    quantity:1,
-    subtotal:50000,
     description:
     'zapatos deportivos adiddas',
      numReviews: 5,
@@ -58,7 +54,6 @@
     image:'https://image.shutterstock.com/image-photo/vintage-red-shoes-on-white-600w-92008067.jpg',
     rating:4,
     countInStock:7,
-    quantity:1,
     category:'shoes',
     description:
     'zapatos formales',
@@ -75,7 +70,6 @@
     image: '	https://cdn.stocksnap.io/img-thumbs/960w/fashion-style_UWG6INS1BC.jpg',
     rating:5,
     countInStock:3,
-    quantity:1,
     category:'shoes',
     description:
     'zapatos casuales para uso diario',

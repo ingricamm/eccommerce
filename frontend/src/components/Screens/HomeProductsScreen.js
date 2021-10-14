@@ -10,16 +10,16 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import CurrencyFormat from "react-currency-format";
 import Rating from "../Rating";
 
-export default function Products(props) {
+export default function HomeProducts(props) {
   // const [searchKeyword, setSearchKeyword,
   // sortOrder, setSortOrder, dispatch] = useState('');
   // const category = props.match.params.id ? props.match.params.id : '';
-
+ 
   const productList = useSelector((state) => state.productList);
   const { products, loading, error } = productList;
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(listProducts);
+    dispatch(listProducts());
 
     return () => {
       //
@@ -36,7 +36,7 @@ export default function Products(props) {
         <div className="container">
           <ul className="grid-responsive">
             {products.map((product) => (
-              <li>
+              <li key={product.id}>
                 {/* toma los articulos de acuerdo a su unico identificador, 
                   pasa la informacion a CardProduct
                    y los separa de acuerdo al tamaño de pantalla  */}
