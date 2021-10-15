@@ -6,13 +6,15 @@ import '../css/Form.css';
 
 function RegisterScreen(props) {
 
-  const [name, setName, dispatch] = useState('');
+  const [name, setName] = useState('');
+  const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rePassword, setRePassword] = useState('');
   const userRegister = useSelector(state => state.userRegister);
   const { loading, userInfo, error } = userRegister;
-  // const dispatch = useDispatch();
+  
+  const dispatch = useDispatch();
 
   const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
   useEffect(() => {
@@ -22,11 +24,11 @@ function RegisterScreen(props) {
     return () => {
       //
     };
-  }, [userInfo]);
+  }, [props.history, redirect, userInfo]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(register(name, email, password));
+    dispatch(register(name,userName, email, password));
   }
   return <div className="form">
     <form onSubmit={submitHandler} >
@@ -45,16 +47,23 @@ function RegisterScreen(props) {
           <input type="name" name="name" id="name" onChange={(e) => setName(e.target.value)}>
           </input>
         </li>
+         <li>
+          <label htmlFor="userName">
+            User name
+          </label>
+          <input type="userName" name="userName" id="userName" onChange={(e) => setUserName(e.target.value)} required={true}>
+          </input>
+        </li>
         <li>
           <label htmlFor="email">
             Email
           </label>
-          <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)}>
+          <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)} required>
           </input>
         </li>
         <li>
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)}>
+          <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)} required>
           </input>
         </li>
         <li>

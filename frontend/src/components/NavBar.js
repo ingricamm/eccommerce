@@ -24,7 +24,8 @@ export default function NavBar(props) {
   ] = useState("");
   //const category = props.match.params.id ? props.match.params.id : '';
   const productList = useSelector((state) => state.productList);
-  
+ 
+
 
   //  useEffect(() => {
   //   dispatch(listProducts(category));

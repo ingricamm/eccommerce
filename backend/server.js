@@ -2,25 +2,30 @@ import express from 'express';
 import data from './ProductData.js';
 import config from './config.js';
 import dotenv from 'dotenv';
-import mongoose from 'mongoose';
+import mongoose  from 'mongoose';
 import userRoutes from './routes/userRoutes.js'
 
 
+
 dotenv.config();
-
 const mongodbUrl= config.MONGODB_URL;
-
 mongoose.connect(mongodbUrl,{
     useNewUrlParser:true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
+    //useCreateIndex: true,
 })
+.then(db => console.log('db is conected'))
 .catch((error) => console.log(error.reason))
 
 
  const app = express();
+ 
+ 
+app.use(express.json());
+app.use(express.urlencoded({extended: true}
+    ));
 
-app.use("api/users", userRoutes)
+app.use('/api/users', userRoutes)
 
  //PRODUCTOS PARA EL HOMEPAGE
 app.get("/api/products/", (req, res) => {

@@ -21,9 +21,9 @@ function SignInScreen(props) {
     return () => {
       //
     };
-  }, [userInfo]);
+  }, [props.history, redirect, userInfo]);
 
-  const submitHandler = (e) => {
+  function submitHandler(e) {
     e.preventDefault();
     dispatch(signin(email, password));
 
@@ -39,7 +39,7 @@ function SignInScreen(props) {
           {error && <div>{error}</div>}
         </li>
         <li>
-          <label htmlFor="email">
+          <label for="email">
             Email
           </label>
           <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)}>
@@ -71,61 +71,3 @@ function SignInScreen(props) {
 }
 export default SignInScreen;
 
-// export default function SignInScreem() {
-//   const [email, setEmail] =useState('');
-//   const [password, setPassword]= useState('');
-//   const history = useHistory();
-
-//    const ingresar =(e)=>{
-//         e.preventDefault();/*no refrescar la pagina*/
-//         auth.signInWithEmailAndPassword(email,password).then((auth)=>history.push('/')).cath(err=>alert(err.message));
-//   }
-
-//   return (
-//     <div class="main">
-//       <div>
-//         <h1>Login</h1>
-//       </div>
-//         <form class="login-form">
-//           <div className='contained'>
-//            <input className='username' value={email} type="text"  onChange={e=> setEmail(e.target.value)} placeholder="username"
-//            required
-//             fullWidth
-//             id="email"
-//             label="Email Address or user"
-//             name="email"
-//             autoComplete="email"
-//             />
-//             </div>
-//             <div className='contained'>
-//           <input className='password' value={password} onChange={e=> setPassword(e.target.value)} type="password" placeholder="password"
-//             required
-//             name="password"
-//             label="Password"
-//             id="password"
-//             autoComplete="current-password"
-//           />
-//           </div>
-//           <div className='contained-checkbox'>
-//             <input className='checkbox' type='Checkbox'  value="remember"  label="Remember me"/>
-//             recuerdame
-//           </div>
-//           <button className='submit'
-//            type="submit"
-//             color="primary"
-//             onClick={ingresar}
-//             >login</button>
-//              <h5>
-//               <a href="#" >
-//                 Forgot password?
-//               </a>
-//             </h5>
-//        </form>
-//           <div className='container'>
-//               <RouteLink to ='/signup'>
-//                 {"Don't have an account? Sign Up"}
-//               </RouteLink>
-//           </div>
-//      </div>
-//   );
-// }

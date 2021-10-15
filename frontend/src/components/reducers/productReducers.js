@@ -1,4 +1,4 @@
-import {TYPES} from '../constants/productConstants';
+import TYPES from '../constants/productConstants';
 
 
 

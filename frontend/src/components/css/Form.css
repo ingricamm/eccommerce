@@ -45,4 +45,10 @@
     border: solid 1px  #f0f0f01c;
     padding: 2px 20px;
     border-radius: 5px;
+    cursor: pointer;
+    background-color: orange;
+
+}
+.form-container button:hover {
+  border: 0.1rem #818181 solid;
 }
