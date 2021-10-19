@@ -16,7 +16,7 @@ function RegisterScreen(props) {
   
   const dispatch = useDispatch();
 
-  const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
+  const redirect = props.location.search ? props.location.search.split('=')[1] : '/';
   useEffect(() => {
     if (userInfo) {
       props.history.push(redirect);
@@ -30,9 +30,9 @@ function RegisterScreen(props) {
     e.preventDefault();
     dispatch(register(name,userName, email, password));
   }
-  return <div className="form">
+  return <div className='form'>
     <form onSubmit={submitHandler} >
-      <ul className="form-container">
+      <ul className='form-container'>
         <li>
           <h2>Create Account</h2>
         </li>
@@ -41,42 +41,42 @@ function RegisterScreen(props) {
           {error && <div>{error}</div>}
         </li>
         <li>
-          <label htmlFor="name">
+          <label htmlFor='name'>
             Name
           </label>
-          <input type="name" name="name" id="name" onChange={(e) => setName(e.target.value)}>
+          <input type='name' name='name' id='name' onChange={(e) => setName(e.target.value)} required>
           </input>
         </li>
          <li>
-          <label htmlFor="userName">
+          <label htmlFor='userName'>
             User name
           </label>
-          <input type="userName" name="userName" id="userName" onChange={(e) => setUserName(e.target.value)} required={true}>
+          <input type='userName' name='userName' id='userName' onChange={(e) => setUserName(e.target.value)} required>
           </input>
         </li>
         <li>
-          <label htmlFor="email">
+          <label htmlFor='email'>
             Email
           </label>
-          <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)} required>
+          <input type="email" name="email" id="email"  onChange={(e) => setEmail(e.target.value)} required>
           </input>
         </li>
         <li>
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)} required>
+          <label htmlFor='password'>Password</label>
+          <input type='password' id='password' name='password' onChange={(e) => setPassword(e.target.value)} required>
           </input>
         </li>
         <li>
-          <label htmlFor="rePassword">Re-Enter Password</label>
-          <input type="password" id="rePassword" name="rePassword" onChange={(e) => setRePassword(e.target.value)}>
+          <label htmlFor='rePassword'>Re-Enter Password</label>
+          <input type='password' id='rePassword' name='rePassword' onChange={(e) => setRePassword(e.target.value)} required>
           </input>
         </li>
         <li>
-          <button type="submit" className="button primary">Register</button>
+          <button type='submit' className='button primary'>Register</button>
         </li>
         <li>
           Already have an account?
-          <Link to={redirect === "/" ? "signin" : "signin?redirect=" + redirect} className="button secondary text-center" >Sign In in Bhola</Link>
+          <Link to={redirect === '/' ? 'signin' : 'signin?redirect=' + redirect} className='button secondary text-center' >Sign In in Bhola</Link>
 
         </li>
 

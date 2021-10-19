@@ -16,6 +16,21 @@ console.log(action);
       return state;
   }
 }
+ const productCategoryListReducer = (
+  state = { loading: true, products: [] },
+  action
+) => {
+  switch (action.type) {
+    case TYPES.PRODUCT_CATEGORY_LIST_REQUEST:
+      return { loading: true };
+    case TYPES.PRODUCT_CATEGORY_LIST_SUCCESS:
+      return { loading: false, categories: action.payload };
+    case TYPES.PRODUCT_CATEGORY_LIST_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
 
 function productDetailsReducer(state={ product: { } }, action) {
   switch (action.type) {
@@ -76,4 +91,5 @@ export {
   productSaveReducer,
   productDeleteReducer,
   productReviewSaveReducer,
+  productCategoryListReducer,
 };

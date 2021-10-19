@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken';
-import config from './config';
+import config from './config.js';
 
 const getToken = (user) => {
   return jwt.sign(
     {
-      _id: user.id,
+      id: user.id,
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
@@ -31,7 +31,7 @@ const isAuth = (req, res, next) => {
     });
   } else {
     return res.status(401).send({ message: 'Token is not supplied.' });
-  }
+  } 
 };
 
 const isAdmin = (req, res, next) => {

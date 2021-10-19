@@ -6,7 +6,6 @@ import {
   listProducts,
   deleteProdcut,
 } from '../actions/productActions';
-import products from '../../ProductData';
 import '../css/Form.css'
 
 function ProductsScreen(props) {
@@ -21,7 +20,7 @@ function ProductsScreen(props) {
   const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState(false);
   const productList = useSelector((state) => state.productList);
-  const { loading,  error } = productList;
+  const { loading,products,  error } = productList;
 
 
   const productSave = useSelector((state) => state.productSave);
@@ -64,7 +63,7 @@ function ProductsScreen(props) {
     e.preventDefault();
     dispatch(
       saveProduct({
-        _id: id,
+        _id:id,
         name,
         price,
         image,
@@ -223,8 +222,8 @@ function ProductsScreen(props) {
           </thead>
           <tbody>
             {products.map((product) => (
-              <tr key={product.id}>
-                <td>{product.id}</td>
+              <tr key={product._id}>
+                <td>{product._id}</td>
                 <td>{product.name}</td>
                 <td>{product.price}</td>
                 <td>{product.category}</td>

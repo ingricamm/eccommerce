@@ -4,7 +4,9 @@
   box-sizing: border-box;
 }
 
-
+a{
+  text-decoration: none;
+}
 body{
   background-color: rgb(255, 255, 255);
   max-width: 100%;
@@ -36,7 +38,7 @@ button {
 .App-header{
   grid-area: header;
   width: 100%;
-  background-color: #F75B0F;
+  background-color:#230A3D;
  height: inherit;
   display: flex;
   flex-direction: column;
@@ -48,14 +50,14 @@ button {
 
 .App-main {
   grid-area: main;
-  margin-top: 2rem;
+  margin-top:0;
   height: inherit;
 }
 
 .footer {
   grid-area: footer;
   height: inherit;
-  background-color: #203040;
+  background-color: #230A3D;
   color: #ffffff;
   justify-content: center;
   align-items: center;
@@ -98,7 +100,7 @@ button {
   
 }
 th {
-  text-align: left;
+  text-align: center;
 }
 tbody > tr:nth-child(odd) {
   background-color: #f0f0f0;

@@ -16,6 +16,7 @@ router.put('/:id', isAuth, async (req, res) => {
     res.send({
       _id: updatedUser.id,
       name: updatedUser.name,
+      userName:updatedUser.userName,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
       token: getToken(updatedUser),
@@ -35,6 +36,7 @@ router.post("/signin", async (req, res) => {
     res.send({
       _id: signinUser.id,
       name: signinUser.name,
+      userName:signinUser.userName,
       email: signinUser.email,
       isAdmin: signinUser.isAdmin,
       token: getToken(signinUser),
@@ -50,6 +52,7 @@ router.post("/register", async (req, res) => {
   const user = new User({
     name: req.body.name,
     email: req.body.email,
+    userName:req.body.userName,
     password: req.body.password,
   });
   const newUser = await user.save();

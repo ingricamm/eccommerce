@@ -8,7 +8,9 @@ import CartScreen from './components/Screens/CartScreen';
 import ProductScreen from './components/Screens/ProductScreen';
 import { useSelector } from 'react-redux';
 import ProductsScreen from './components/Screens/ProductsScreen';
-
+import ProfileScreen from './components/Screens/ProfileScreen';
+import OrderScreen from './components/Screens/OrderScreen';
+import OrdersScreen from './components/Screens/OrdersScreen';
 
 
 function App() {
@@ -28,6 +30,7 @@ function App() {
              <NavBar />
           </header>
            <aside className="sidebar">
+             
           <h3>Shopping Categories</h3>
           <button className="sidebar-close-button" onClick={closeMenu}>
             x
@@ -44,17 +47,19 @@ function App() {
         </aside>
          <main className='App-main'>
           <div className='content'>
-            {/* <Route path='/orders' component={OrdersScreen} />
-            <Route path='/profile' component={ProfileScreen} /> */}
-            {/* <Route path='/order/:id' component={OrderScreen} /> */}
+            
+                    
         <Switch>
+           <Route path='/order/:id' component={OrderScreen} />
+           <Route path='/orders' component={OrdersScreen} />
+           <Route path="/profile" component={ProfileScreen} />
             <Route path='/signin' component={SignInScreen} />
             <Route path='/register' component={RegisterScreen} />
             <Route path='/products' component={ProductsScreen} />            
             <Route path='/product/:id' component={ProductScreen} />
             <Route path='/cart/:id?' component={CartScreen} />
             <Route path='/' exact={true} component={HomeProducts} />
-           
+            
         </Switch>
             
             {/* <Route path='/cart/:id?' component={CartScreen} />

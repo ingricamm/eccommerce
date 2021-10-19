@@ -8,6 +8,7 @@ import{ cartReducer } from './components/reducers/CartReducer'
 import {
 
   productListReducer,
+   productCategoryListReducer,
   productDetailsReducer,
   productSaveReducer,
   productDeleteReducer,
@@ -18,6 +19,9 @@ import {
   userSigninReducer,
   userRegisterReducer,
   userUpdateReducer,
+   userDeleteReducer,
+  userDetailsReducer,
+  userUpdateProfileReducer
 } from './components/reducers/userReducers';
 
 import {
@@ -35,21 +39,25 @@ export const StateContext = createContext();
 export const useStateValue =() => useContext(StateContext);
 
 
-//const cartItems = Cookie.get() || [];
-// const userInfo = Cookies.getJSON('userInfo') || null;
+//const cartItems = Cookie.get('cartItems') || [];
+ const userInfo = Cookie.get('userInfo') || null;
 
 const initialState ={
- //cart: { cartItems, shipping: {}, payment: {} },
-  // user:userInfo ,
+  cart: { cartItems:[], shipping: {}, payment: {} },
+   user:userInfo ,
   
 };
 
 const reducer = combineReducers({
   productList: productListReducer,
+   productCategoryListReducer: productCategoryListReducer,
   productDetails: productDetailsReducer,
   cart: cartReducer,
   userSignin: userSigninReducer,
   userRegister: userRegisterReducer,
+  userDelete: userDeleteReducer,
+  userDetails:userDetailsReducer,
+  userUpdateProfileReducer,
   productSave: productSaveReducer,
   productDelete: productDeleteReducer,
   productReviewSave: productReviewSaveReducer,

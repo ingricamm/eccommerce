@@ -1,5 +1,3 @@
-/*tomamos los productos y se los asignamos a la tarjeta de los productos, usamos el un grid de matiial para ajustar
- el contenido de acuerdo al tamaño de pantalla*/
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../actions/productActions";
@@ -11,13 +9,14 @@ import CurrencyFormat from "react-currency-format";
 import Rating from "../Rating";
 
 export default function HomeProducts(props) {
-  // const [searchKeyword, setSearchKeyword,
-  // sortOrder, setSortOrder, dispatch] = useState('');
-  // const category = props.match.params.id ? props.match.params.id : '';
- 
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const [sortOrder, setSortOrder] = useState("");
+  const category = props.match.params.id ? props.match.params.id : "";
   const productList = useSelector((state) => state.productList);
   const { products, loading, error } = productList;
+  const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(listProducts());
 
@@ -26,8 +25,26 @@ export default function HomeProducts(props) {
     };
   }, []);
 
+  const sortHandler = (e) => {
+    setSortOrder(e.target.value);
+    dispatch(listProducts(category, searchKeyword, sortOrder));
+  };
+
   return (
     <>
+      {category && <h2>{category}</h2>}
+      <div classname="navbar-filter">
+        <ul className="filter">
+          <li>
+            Sort By{" "}
+            <select name="sortOrder" onChange={sortHandler}>
+              <option value="">Newest</option>
+              <option value="lowest">Lowest</option>
+              <option value="highest">Highest</option>
+            </select>
+          </li>
+        </ul>
+      </div>
       {loading ? (
         <div>Loading...</div>
       ) : error ? (
@@ -43,18 +60,16 @@ export default function HomeProducts(props) {
 
                 <div className="card-product">
                   <div className="cardHeader">
+                    <Link to={"/product/" + product._id}>{product.name}</Link>
                     <button aria-label="add-to-car">
                       <FontAwesomeIcon
                         icon={faShoppingCart}
                         className="button-cart"
-                        style={{ color: "white" }}
                       />
                     </button>
-                    <Link to={"/product/" + product.id}>{product.name}</Link>
                   </div>
-                  <p>in stock</p>
                   <div className="card-media">
-                    <Link to={"/product/" + product.id}>
+                    <Link to={"/product/" + product._id}>
                       <img
                         className="product-image"
                         src={product.image}
@@ -65,37 +80,30 @@ export default function HomeProducts(props) {
                     </Link>
                   </div>
                   {product.name}
-                  <div className="cantidad">
-                    <p>cantidad: </p>
-                    <input type="Number" />
-                    {/* <datalist id='cantidad'>
-                <option value='1' selected='true'/>
-                <option value='2' />
-                <option value='3' />
-                <option value='4' />
-                <option value='5' />
-                <option value='6' />
-                <option value='7' />
-                <option value='8' />
-                <option value='9' />
-                <option value='10' />
-            </datalist> */}
+                  <div>
+                    Qty:{" "}
+                    <select
+                      value={qty}
+                      onChange={(e) => {
+                        setQty(e.target.value);
+                      }}
+                    >
+                      {[...Array(product.countInStock).keys()].map((x) => (
+                        <option key={x + 1} value={x + 1}>
+                          {x + 1}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                   <div classname="CardContent">
-                    <h4 className="action" variant="h5" color="textSecondary">
-                      <CurrencyFormat
-                        decimalScale={2}
-                        value={product.price}
-                        displayType={"text"}
-                        thousandSeperator={true}
-                        prefix={"$"}
-                      />
-                      {/* {accounting.formatMoney(50)} ejemplo de como aplicar la moneda en dolar aca*/}
-                    </h4>
-
-                    <p variant="body2" color="textSecondary">
-                      {product.productType}
-                    </p>
+                    <CurrencyFormat
+                      decimalScale={2}
+                      value={product.price}
+                      displayType={"text"}
+                      thousandSeperator={true}
+                      prefix={"$"}
+                    />
+                    
                   </div>
                   <p className="description">{product.description}</p>
                   <div className="product-rating">
@@ -113,18 +121,3 @@ export default function HomeProducts(props) {
     </>
   );
 }
-
-//  <div className={classes.root} >
-//       <Grid container spacing={2}>
-//         {
-//             products.map(product =>(
-//                 <Grid item xs={6} sm={4} md={3} lg={2}>
-//                   {/* toma los articulos de acuerdo a su unico identificador,
-//                   pasa la informacion a CardProduct
-//                    y los separa de acuerdo al tamaño de pantalla  */}
-//                      <Product key={product.id} product={product}/>
-//                 </Grid>
-//             ))
-//         }
-//       </Grid>
-//     </div>
