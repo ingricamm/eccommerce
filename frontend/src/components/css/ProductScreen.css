@@ -1,10 +1,18 @@
 /* Product Details */
+.content-margined {
+  margin: 1rem;
+  
+}
+.content-margined ul{
+  align-content: left;
+}
 .details {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
   padding: 1rem;
+  list-style: none;
 }
 .details-image {
   flex: 1 1 50rem;

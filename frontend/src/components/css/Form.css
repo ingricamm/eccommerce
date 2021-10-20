@@ -55,7 +55,11 @@
 .form-container button:hover {
   border: 0.1rem #818181 solid;
 }
-input:hover:invalid:required , input:invalid{
+ input:invalid{
   border: solid 1px red;
 
 }
+/* input:hover:invalid:required , input:invalid{
+  border: solid 1px red;
+
+} */

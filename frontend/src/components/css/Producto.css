@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box  !important;
+   
 
 } 
 /* NAVBAR FILTER*/
@@ -21,14 +22,16 @@
 /*HOMESCREEN PRODUCTS*/
 .container{
    max-width: 95%;
-    margin: 2rem;
+    margin: auto;
     align-items: center;
     justify-content: center;
+    
 }
 .grid-responsive {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap; 
+  align-content: center !important;
 }
 
 .grid-responsive li {
@@ -38,7 +41,7 @@
   margin: .7rem;
   height: 30rem;
    font-size: 1.5rem;
-  border-bottom: 0.1rem #c0c0c0 solid;
+  
 }
 /*CARD PRODUCTS SCREEN*/
 
@@ -47,40 +50,38 @@
   color: inherit;
 }
 
-input[type=number] {
-   -moz-appearance:textfield;
-width: 30px;
-margin-left: .5rem;
-border-color:black ;
-border: none !important;
-background-color: transparent;
-}
-::placeholder {
-  color: rgb(0, 0, 0);
-  font-size: 1em;
- }
-
-
 .card-product {
-    width: 210px;
+    width: 20rem;
+    display: grid;
+    grid-template-areas:
+    'header'
+    'main'
+    'footer';
+  grid-template-columns: 1fr;
+  grid-template-rows: 15% 1fr 10%;
+  height: 100%;
     background-color: rgba(206, 206, 206, 0.171) ;
     border:  rgba(206, 206, 206, 0.171) solid 1px;
-    margin: 0;
-    justify-content: center;
-    height: 100%;
-  }
+    margin-right:2rem;
+    }
  
-  
-.cardHeader{
+  .card-product a:hover{
+    color:#44157ae3 ;
+    
+  }
+.card-header{
+  grid-area: header;
   margin: 1rem;
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
+   font-family:'Times New Roman', Times, serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #230A3D;
  
-
 }
 
-.cardHeader> button{
+.card-header> button{
     border: none;
   background: none;
   color: rgba(0, 0, 0, 0.295) !important;
@@ -91,4 +92,17 @@ background-color: transparent;
   display:inline;
 
 }
+.card-product .card-content{
+ grid-area: footer;
+  background-color: rgb(255, 217, 2) !important;
+  font-family: 'Times New Roman', Times, serif;
+  padding: .4rem;
+  font-size: 2rem;
+}
 
+.card-media{
+  font-style: oblique;
+}
+.product-rating{
+  margin: .5rem 0;
+}

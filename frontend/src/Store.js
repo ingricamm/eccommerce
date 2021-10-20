@@ -38,12 +38,15 @@ import {
 export const StateContext = createContext();
 export const useStateValue =() => useContext(StateContext);
 
-
-//const cartItems = Cookie.get('cartItems') || [];
- const userInfo = Cookie.get('userInfo') || null;
+const userInfo = localStorage.getItem('userInfo')
+      ? JSON.parse(localStorage.getItem('userInfo'))
+      : null;
+const cartItems =localStorage.getItem('cartItems')
+      ? JSON.parse(localStorage.getItem('cartItems'))
+      : []; 
 
 const initialState ={
-  cart: { cartItems:[], shipping: {}, payment: {} },
+  cart: { cartItems, shipping: {}, payment: {} },
    user:userInfo ,
   
 };

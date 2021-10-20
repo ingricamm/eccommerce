@@ -21,7 +21,7 @@ const update = ({ userId, name, userName, email , password }) => async (dispatch
     });
 
     dispatch({ type: TYPES.USER_UPDATE_SUCCESS, payload: data });
-    Cookie.set('userInfo', JSON.stringify(data));
+   localStorage.setItem('userInfo', JSON.stringify(data));
   
   } catch (error) {
     dispatch(
@@ -33,10 +33,7 @@ const update = ({ userId, name, userName, email , password }) => async (dispatch
 
 const signin = (email, password) => async (dispatch) => {
   dispatch({ 
-    type: TYPES.USER_SIGNIN_REQUEST,
-     payload: {
-        email, password 
-      }
+    type: TYPES.USER_SIGNIN_REQUEST,payload: {email, password }
      });
 
   try {
@@ -45,11 +42,9 @@ const signin = (email, password) => async (dispatch) => {
        type: TYPES.USER_SIGNIN_SUCCESS, 
        payload: data 
       });
-
-    Cookie.set('userInfo', JSON.stringify(data));
+      localStorage.setItem('userInfo', JSON.stringify(data));
     
- 
-  } catch (error) {
+   } catch (error) {
     dispatch(
       { type: TYPES.USER_SIGNIN_FAIL,
          payload: error.message
@@ -106,6 +101,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
       headers: { Authorization: `Bearer ${userInfo.token}` },
     });
     dispatch({ type: TYPES.USER_UPDATE_SUCCESS, payload: data });
+    localStorage.setItem('userInfo', JSON.stringify(data));
   } catch (error) {
     const message =
       error.response && error.response.data.message
@@ -135,6 +131,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
   }
 };
 const deleteUser = (userId) => async (dispatch, getState) => {
+  
   dispatch({ type: TYPES.USER_DELETE_REQUEST, payload: userId });
   const {
     userSignin: { userInfo },
@@ -156,11 +153,9 @@ const deleteUser = (userId) => async (dispatch, getState) => {
 const register = (name,userName, email, password) => async (dispatch) => {
  
   dispatch(
-    { type: TYPES.USER_REGISTER_REQUEST, 
-      payload: {
-         name,userName, email, password,
-         }
-         });
+    { type: TYPES.USER_REGISTER_REQUEST,  payload: 
+      { name,userName, email, password, }
+     });
  
   try {
     
@@ -169,17 +164,14 @@ const register = (name,userName, email, password) => async (dispatch) => {
       });
 
     dispatch(
-      { type: TYPES.USER_REGISTER_SUCCESS, 
-        payload: data 
-      });
-
-    Cookie.set('userInfo', JSON.stringify(data));
+      { type: TYPES.USER_REGISTER_SUCCESS,  payload: data  });
+       dispatch({
+       type: TYPES.USER_SIGNIN_SUCCESS,  payload: data  });
+    localStorage.setItem('userInfo', JSON.stringify(data));
   
   } catch (error) {
     dispatch(
-      { type: TYPES.USER_REGISTER_FAIL,
-        payload: error.message 
-        });
+      { type: TYPES.USER_REGISTER_FAIL, payload: error.message  });
   }
 }
 

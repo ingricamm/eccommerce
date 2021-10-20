@@ -28,24 +28,12 @@ const Total = (props) => {
     <div className="total-card">
       <h2>Total</h2>
       <div className='total-items'>
-          <h4>
-            items:
-          </h4>
-          <p>{getTotalItems}</p>
+          <h3> items: {getTotalItems} </h3>
+         
       
       <div>
-        <h3>Subtotal</h3>
-       <b> {currency(getCartTotal)}</b>
-        <CurrencyFormat
-            decimalScale={2}
-            Value={getCartTotal}
-            displayType={'text'}
-            thousandSeperator={true}
-            prefix={'$'}
-            renderText={
-              value => 
-              <div>{value}</div>}
-        />
+        <h3>Subtotal :</h3>
+        {currency(getCartTotal)}
         
       </div>
       <Link to="/checkout">

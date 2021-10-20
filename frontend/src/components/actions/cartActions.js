@@ -1,5 +1,4 @@
 import Axios from "axios";
-import Cookie from "js-cookie";
 import { TYPES} from "../constants/cartConstants";
 
 const addToCart = (productId, qty) => async (dispatch, getState) => {
@@ -15,9 +14,9 @@ const addToCart = (productId, qty) => async (dispatch, getState) => {
         qty,
       }
     });
-    const { cart: { cartItems } } = getState();
-    
-     Cookie.set('cartItems', JSON.stringify(cartItems));
+        
+   localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
+
    
 
   } catch (error) {
@@ -27,8 +26,8 @@ const addToCart = (productId, qty) => async (dispatch, getState) => {
 const removeFromCart = (productId) => (dispatch, getState) => {
   dispatch({ type: TYPES.REMOVE_ITEM_FROM_CART, payload: productId });
 
-  const { cart: { cartItems } } = getState();
-  Cookie.set('cartItems', JSON.stringify(cartItems));
+ localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
+
 }
 const saveShipping = (data) => (dispatch) => {
   dispatch({ type: TYPES.CART_SAVE_SHIPPING, payload: data });
