@@ -9,21 +9,21 @@ import { detailsProduct, saveProductReview } from "../actions/productActions";
 function ProductScreen(props) {
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
   const productDetails = useSelector((state) => state.productDetails);
   const { product, loading, error } = productDetails;
-  const dispatch = useDispatch();
   const productReviewSave = useSelector((state) => state.productReviewSave);
   const { success: productSaveSuccess } = productReviewSave;
+  const dispatch = useDispatch();
 
   //ESTA FUNCIÓN SIRVE PARA MOSTRATR EL ARTIVULO DEPENDIENDO DEL ID
   useEffect(() => {
-     if (productSaveSuccess) {
-      alert('Review submitted successfully.');
+    if (productSaveSuccess) {
+      alert("Review submitted successfully.");
       setRating(0);
-      setComment('');
+      setComment("");
       dispatch({ type: TYPES.PRODUCT_REVIEW_SAVE_RESET });
     }
     dispatch(detailsProduct(props.match.params.id));
@@ -32,13 +32,13 @@ function ProductScreen(props) {
       //
     };
   }, [dispatch, productSaveSuccess, props.match.params.id]);
-//AÑADIR AL CARRITO DE COMPRAS
-  
-const handleAddToCart = ()  =>{
-  props.history.push('/cart/' + props.match.params.id + '?QTY=' + qty)
-}
+  //AÑADIR AL CARRITO DE COMPRAS
 
- const submitHandler = (e) => {
+  const handleAddToCart = () => {
+    props.history.push("/cart/" + props.match.params.id + "?QTY=" + qty);
+  };
+
+  const submitHandler = (e) => {
     e.preventDefault();
     // dispatch actions
     dispatch(
@@ -62,30 +62,32 @@ const handleAddToCart = ()  =>{
       ) : (
         <>
           <div className="details">
-            <div className="details-image">
-              <img src={product.image} alt="product"></img>
-            </div>
-            <div className="details-info">
-              <ul>
-                <li>
-                  <h4>{product.name}</h4>
-                </li>
-                <li>
-                  <a href="#reviews">
-                    <Rating
-                      value={product.rating}
-                      text={product.numReviews + " reviews"}
-                    />
-                  </a>
-                </li>
-                <li>
-                  Price: <b>${product.price}</b>
-                </li>
-                <li>
-                  Description:
-                  <div>{product.description}</div>
-                </li>
-              </ul>
+            <div className="card-details">
+              <div className="details-image">
+                <img src={product.image} alt="product"></img>
+              </div>
+              <div className="details-info">
+                <ul>
+                  <li>
+                    <h4>{product.name}</h4>
+                  </li>
+                  <li>
+                    <a href="#reviews">
+                      <Rating
+                        value={product.rating}
+                        text={product.numReviews + " reviews"}
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    Price: <b>${product.price}</b>
+                  </li>
+                  <li>
+                    Description:
+                    <div>{product.description}</div>
+                  </li>
+                </ul>
+              </div>
             </div>
             <div className="details-action">
               <ul>
@@ -93,7 +95,8 @@ const handleAddToCart = ()  =>{
                   Price:<b> ${product.price}</b>
                 </li>
                 <li>
-                  Status: {product.countInStock >0? 'in Stock' :'unavailable'}
+                  Status:{" "}
+                  {product.countInStock > 0 ? "in Stock" : "unavailable"}
                 </li>
                 <li>
                   Qty:{" "}
@@ -112,17 +115,22 @@ const handleAddToCart = ()  =>{
                 </li>
                 <li>
                   {product.countInStock > 0 && (
-                    <button className="button primary" onClick={handleAddToCart}>Add to Cart</button>
+                    <button
+                      className="button primary"
+                      onClick={handleAddToCart}
+                    >
+                      Add to Cart
+                    </button>
                   )}
                 </li>
               </ul>
-            </div>
+            </div>{" "}
           </div>
-          <div className="content-margined">
-            <h2>Reviews</h2>
-             {!product.reviews.length && <div>There is no review</div>}
+          <div className="details-content-margined">
             <ul className="review" id="reviews">
-              {product.reviews.map((review) => (
+              <h2>Reviews</h2>
+              {!product.reviews?.length && <div>There is no review</div>}
+              {product.reviews?.map((review) => (
                 <li key={review._id}>
                   <div>{review.name}</div>
                   <div>
@@ -133,10 +141,10 @@ const handleAddToCart = ()  =>{
                 </li>
               ))}
               <li>
-                <h3>Write a customer review</h3>
                 {userInfo ? (
                   <form onSubmit={submitHandler}>
                     <ul className="form-container">
+                      <h3>Write a customer review</h3>
                       <li>
                         <label htmlFor="rating">Rating</label>
                         <select
@@ -171,10 +179,10 @@ const handleAddToCart = ()  =>{
                   <div>
                     Please <Link to="/signin">Sign-in</Link> to write a review.
                   </div>
-                )} 
-               </li> 
-             </ul>
-          </div> 
+                )}
+              </li>
+            </ul>
+          </div>
         </>
       )}
     </div>

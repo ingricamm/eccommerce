@@ -1,10 +1,30 @@
 /* Product Details */
-.content-margined {
-  margin: 1rem;
+.card-details{
+   display: flex;
+   background-color: #ffffff;
+   flex-direction:row;
+   width: 73%;
+   justify-content:space-between;
+}
+
+.details-content-margined {
+  margin:1rem 3rem 1rem 2rem ;
+   border-radius: 0.5rem;
+   width: 70.5%;
   
 }
-.content-margined ul{
-  align-content: left;
+.details-content-margined ul:first-child{
+   list-style: none;
+    background-color: #ffffff;
+  
+}
+.details-content-margined li:last-child{
+  background-color: transparent ;
+   margin: 0;
+}
+.details-content-margined li div{
+  margin-bottom: .1rem;
+  padding: .2rem;
 }
 .details {
   display: flex;
@@ -12,38 +32,17 @@
   align-items: flex-start;
   flex-wrap: wrap;
   padding: 1rem;
+  margin: 2rem;
   list-style: none;
-}
-.details-image {
-  flex: 1 1 50rem;
-}
-.details-image img {
-  max-width: 50rem;
-  width: 100%;
-}
-.details-info {
-  flex: 1 1 30rem;
-}
-.details-action {
-  flex: 1 1 30rem;
+  
 }
 
-.details-info ul,
-.details-action ul {
-  list-style-type: none;
-  padding: 0;
-}
-.details-info li,
-.details-action li {
-  margin-bottom: 1rem;
-}
-.back-to-result {
-  padding: 1rem;
-}
 .details-action {
-  border: 0.1rem #808080 solid;
+  width: 25%;
+ height: inherit;
+ border: 0.1rem #80808018 solid;
   border-radius: 0.5rem;
-  background-color: #f8f8f8;
+  background-color: #ffffff;
   padding: 1rem;
 }
 .details-action ul li:last-child {
@@ -53,9 +52,37 @@
 .details-action select{
   width: 5rem;
 }
+.details-image {
+  width:50%;
+  margin: 1rem; 
+}
+
+.details-image img {
+  max-width:100%;
+  }
+
+.details-info {
+width: 50%;
+  
+}
+
+.details-info ul, .details-action ul {
+  list-style-type: none;
+  padding: 0;
+}
+.details-info li, .details-action li {
+  margin-bottom: 1rem;
+  padding: .5rem;
+}
+
+.back-to-result {
+  padding: 1rem;
+}
+
+
 .button {
   padding: 1rem;
-  border: 0.1rem #808080 solid;
+  border: 0.1rem #222222 solid;
   border-radius: .5rem;
   cursor: pointer;
 }
@@ -64,10 +91,49 @@
 }
 .button.primary {
   background-color: #f0c040;
+
 }
 .button.secondary {
   background-color: #f0f0f0;
 }
 .text-center {
   text-align: center;
+}
+.review{
+  padding-top:1rem;
+   
+
+}
+.review form{
+  background-color:  rgb(232, 237, 243);;
+   display: flex;
+   flex-grow: 1;
+   margin: 0;
+   padding: 0;
+  justify-content: left;
+}
+
+.review .form-container{
+  flex-grow: 1;
+    margin:  2rem 0;
+   display: flex;
+  justify-content: left;
+  
+}
+.review .form-container ul{
+  display: flex;
+  justify-content: left;
+  width: inherit;  
+}
+.review .form-container textarea{
+  height: 10rem;
+}
+.review .form-container select , .review .form-container button{
+  width:20rem;
+
+  
+}
+.review .form-container .button.primary {
+  position: relative;
+  margin: auto;
 }

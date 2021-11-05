@@ -1,6 +1,8 @@
 import TYPES from "../constants/productConstants";
 import axios from "axios";
 
+
+//VISUALIZAR LA LISTA DE LOS PRODUCTOS
 const listProducts =
   (category = "", searchKeyword = "", sortOrder = "") =>
   async (dispatch) => {
@@ -21,7 +23,7 @@ const listProducts =
       dispatch({ type: TYPES.PRODUCT_LIST_FAIL, payload: error.message });
     }
   };
-
+// VISUALIZAR CATEGORIAS
  const listProductCategories = () => async (dispatch) => {
   dispatch({
     type: TYPES.PRODUCT_CATEGORY_LIST_REQUEST,
@@ -64,6 +66,7 @@ const saveProduct = (product) => async (dispatch, getState) => {
   }
 };
 
+//VER DETALLES DEL PRODUCTO EN PAGINA INDIVIDUAL
 const detailsProduct = (productId) => async (dispatch) => {
   try {
     dispatch({ type: TYPES.PRODUCT_DETAILS_REQUEST, payload: productId });
@@ -77,6 +80,7 @@ const detailsProduct = (productId) => async (dispatch) => {
 };
 console.log(listProducts);
 
+//ELIMINAR PRODUCTO DE LA BASE DE DATOS
 const deleteProdcut = (productId) => async (dispatch, getState) => {
   try {
     const {
@@ -100,7 +104,7 @@ const deleteProdcut = (productId) => async (dispatch, getState) => {
     dispatch({ type: TYPES.PRODUCT_DELETE_FAIL, payload: error.message });
   }
 };
-
+//GUARDA LOS  COMENTARIOS SOBRE LOS PRODUCTOS DEL CLIENTE
 const saveProductReview = (productId, review) => async (dispatch, getState) => {
   try {
     const {

@@ -1,29 +1,25 @@
 *{
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
-a{
-  text-decoration: none;
-}
+
 body{
-  background-color: rgb(255, 255, 255);
-  max-width: 100%;
-  align-items: center;
-  min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 1.5rem;
+  background-color: rgb(241, 246, 250);
+  max-width: 100vw;
+    
 }
-h2, h3,h4{
-  font-weight: 500;
+
+
+i{
+ 
+  margin: .2rem .5rem;
 }
-button {
-  font-size: 1.6rem;
-}
+
 .App {
   text-align: center;
- min-width: 40%;
+
 }
 
  .grid-container {
@@ -40,45 +36,45 @@ button {
 
 .App-header{
   grid-area: header;
-  width: 100%;
-  background-color:#230A3D;
- height: inherit;
+ background-color: #1c0036;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+   color: white;
+
 }
-.open{
-  background-color: rgb(255, 255, 255);
-}
+
 .App-main {
   grid-area: main;
-  margin-top:0;
+  margin-top: 0.1rem;
   height: inherit;
+}
+.canva-off-fondo.open{
+  position: absolute;
+  background-color: rgba(128, 128, 128, 0.555);
+  width: 100vw;
+  height: 100vh;
+   overflow:hidden;
+ 
+}
+.grid-container.open{
+  height: 100vh;
+  overflow:hidden;
 }
 
 .footer {
   grid-area: footer;
   height: inherit;
-  background-color: #230A3D;
+  background-color: #203040;
   color: #ffffff;
   justify-content: center;
   align-items: center;
 
 }
-.aside-fondo{
-  display: none;
-  position:absolute;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.493);
-}
- .open{
-   display: block;
 
-}
+
+
 
 /*PRODUCTS LIST*/
 .product-header {
@@ -89,7 +85,6 @@ button {
 
 .content-margined {
   margin: 2rem;
-  font-size: 1.5rem;
 }
 
 .table {
@@ -98,7 +93,7 @@ button {
   
 }
 th {
-  text-align: center;
+  text-align: left;
 }
 tbody > tr:nth-child(odd) {
   background-color: #f0f0f0;
@@ -106,13 +101,20 @@ tbody > tr:nth-child(odd) {
 /* Rating */
 .rating span {
   color: #ffb901;
-  font-size: 1.8rem;
+ 
   margin: 0.1rem;
 }
 .rating span:last-child {
   color: #444444;
-  font-size: 1.4rem;
+ 
 }
 a > .rating > span:last-child {
   color: #0000ff;
 }
+ @media (max-width: 576px) {
+   .App-header{
+     padding-top: .5rem;
+     justify-content:flex-start ;
+     align-items:center ;
+   }
+ }

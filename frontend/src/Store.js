@@ -1,7 +1,7 @@
 import{createContext, useContext, } from 'react';
 import { createStore, combineReducers,  applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import Cookie from 'js-cookie';
+
 
 import{ cartReducer } from './components/reducers/CartReducer'
 
@@ -18,9 +18,9 @@ import {
 import {
   userSigninReducer,
   userRegisterReducer,
-  userUpdateReducer,
-   userDeleteReducer,
+  userDeleteReducer,
   userDetailsReducer,
+  userListReducer,
   userUpdateProfileReducer
 } from './components/reducers/userReducers';
 
@@ -47,27 +47,29 @@ const cartItems =localStorage.getItem('cartItems')
 
 const initialState ={
   cart: { cartItems, shipping: {}, payment: {} },
-   user:userInfo ,
+   user: userInfo ,
+   userInfo:userInfo,
   
 };
 
 const reducer = combineReducers({
   productList: productListReducer,
-   productCategoryListReducer: productCategoryListReducer,
+   productCategoryList: productCategoryListReducer,
   productDetails: productDetailsReducer,
   cart: cartReducer,
   userSignin: userSigninReducer,
   userRegister: userRegisterReducer,
   userDelete: userDeleteReducer,
   userDetails:userDetailsReducer,
-  userUpdateProfileReducer,
+  userUpdate:userUpdateProfileReducer,
+  userList:userListReducer,
   productSave: productSaveReducer,
   productDelete: productDeleteReducer,
   productReviewSave: productReviewSaveReducer,
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
-  userUpdate: userUpdateReducer,
+ 
   myOrderList: myOrderListReducer,
   orderList: orderListReducer,
   orderDelete: orderDeleteReducer,

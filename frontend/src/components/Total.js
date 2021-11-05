@@ -25,22 +25,22 @@ const Total = (props) => {
 
   console.log(getCartTotal);
   return (
-    <div className="total-card">
+    <ul className="total-card">
       <h2>Total</h2>
-      <div className='total-items'>
-          <h3> items: {getTotalItems} </h3>
-         
+      <li className='total-items'>
+           Productos:<h3> {getTotalItems} </h3>
+      </li>
+       <li>
+       Subtotal : <h3>  ${currency(getCartTotal)}</h3>
+      </li>
+      <li>
+        <Link to="/checkout">
+          <button className="button-check" onClick={checkoutHandler} diseable ={cartItems===0}>Check out</button>
+       </Link>
+      </li>
+
       
-      <div>
-        <h3>Subtotal :</h3>
-        {currency(getCartTotal)}
-        
-      </div>
-      <Link to="/checkout">
-        <button className="button-check" onClick={checkoutHandler} diseable ={cartItems===0}>Check out</button>
-      </Link>
-      </div>
-    </div>
+    </ul>
   );
 };
 

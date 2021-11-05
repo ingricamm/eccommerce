@@ -1,22 +1,22 @@
 import TYPES from "../constants/userConstants";
 
-function userSigninReducer(state = {user:null}, action) {
+function userSigninReducer(state = {}, action) {
    console.log(action);
-
+  const errorSignin='usuario o contraseña incorrecta'
   switch (action.type) {
     case TYPES.USER_SIGNIN_REQUEST:
       return { loading: true };
     case TYPES.USER_SIGNIN_SUCCESS:
       return { loading: false, userInfo: action.payload };
     case TYPES.USER_SIGNIN_FAIL:
-      return { loading: false, error: action.payload };
+      return { loading: false, error:errorSignin };
     case TYPES.USER_LOGOUT:
       return {};
     default: return state;
   }
 }
 
-function userDetailsReducer (state = { loading: true }, action) {
+function userDetailsReducer (state = { }, action) {
   switch (action.type) {
     case TYPES.USER_DETAILS_REQUEST:
       return { loading: true };
@@ -58,12 +58,12 @@ function userUpdateReducer  (state = {}, action) {
       return state;
   }
 };
-export const userListReducer = (state = { loading: true }, action) => {
+ const userListReducer = (state = { }, action) => {
   switch (action.type) {
     case TYPES.USER_LIST_REQUEST:
       return { loading: true };
     case TYPES.USER_LIST_SUCCESS:
-      return { loading: false, users: action.payload };
+      return { loading: false,success: true, users: action.payload };
     case TYPES.USER_LIST_FAIL:
       return { loading: false, error: action.payload };
     default:
@@ -86,14 +86,16 @@ function userDeleteReducer (state = {}, action)  {
 };
 
 
-function userRegisterReducer(state ={user:null}, action) {
+function userRegisterReducer(state ={}, action) {
+  console.log(action);
+  const regError='El correo electronico ya existe';
   switch (action.type) {
     case TYPES.USER_REGISTER_REQUEST:
       return { loading: true };
     case TYPES.USER_REGISTER_SUCCESS:
       return { loading: false, userInfo: action.payload };
     case TYPES.USER_REGISTER_FAIL:
-      return { loading: false, error: action.payload };
+      return { loading: false, error: regError};
     default: return state;
   }
 }
@@ -103,5 +105,6 @@ export {
   userUpdateReducer,
    userDeleteReducer,
   userDetailsReducer,
+  userListReducer,
   userUpdateProfileReducer
 }

@@ -1,43 +1,43 @@
 import './App.css';
 import NavBar from './components/NavBar';
 import HomeProducts from './components/Screens/HomeProductsScreen';
-import { Switch, BrowserRouter, Route} from 'react-router-dom';
+import { Switch, BrowserRouter, Route } from 'react-router-dom';
 import SignInScreen from './components/Screens/SignInScreen';
 import RegisterScreen from './components/Screens/RegisterScreen';
 import CartScreen from './components/Screens/CartScreen';
 import ProductScreen from './components/Screens/ProductScreen';
 import ProductsScreen from './components/Screens/ProductsScreen';
 import ProfileScreen from './components/Screens/ProfileScreen';
-import ConfigurationScreen from './components/Screens/ConfigurationScreen'
+import ConfigurationScreen from './components/Screens/ConfigurationScreen';
 import OrderScreen from './components/Screens/OrderScreen';
 import OrdersScreen from './components/Screens/OrdersScreen';
+import UserListScreen from './components/Screens/UserListScreen';
+
 
 const openMenu = () => {
-    document.querySelector('.aside-fondo').classList.add('open');
-    document.querySelector('.sidebar').classList.add('open');
+  document.querySelector('.canva-off-fondo').classList.add('open');
+   document.querySelector('.ocultar').classList.add('open');
+   document.querySelector('.grid-container').classList.add('open');
+  document.querySelector('.canva-off').classList.add('open');
+};
 
-  };
 const closeMenu = () => {
-    document.querySelector('.aside-fondo').classList.remove('open');
-    document.querySelector('.sidebar').classList.remove('open');
-     
-  
-  };  
+  document.querySelector('.canva-off-fondo').classList.remove('open');
+   document.querySelector('.ocultar').classList.remove('open');
+   document.querySelector('.grid-container').classList.remove('open');
+  document.querySelector('.canva-off').classList.remove('open');
+};
+
 function App() {
-  
-  
-
-  
-
   return (
     <BrowserRouter>
-      <div>
-        <body className='App grid-container' >
-          <header className='App-header'>
+      <div><div className='canva-off-fondo' onClick={closeMenu}></div>
+        <body className='App grid-container '>
+          <header className='App-header '>
             <NavBar />
           </header>
-          <div className='aside-fondo'onClick={closeMenu} ></div>
-          <main className='App-main' >
+          
+          <main className='App-main'>
             <div className='content'>
               <Switch>
                 <Route path='/order/:id' component={OrderScreen} />
@@ -50,11 +50,10 @@ function App() {
                 <Route path='/product/:id' component={ProductScreen} />
                 <Route path='/cart/:id?' component={CartScreen} />
                 <Route path='/' exact={true} component={HomeProducts} />
+                <Route path='/product/:id' component={ProductScreen} />
+                <Route path='/userlist' component={UserListScreen} />
               </Switch>
 
-              {/* <Route path='/cart/:id?' component={CartScreen} />
-            <Route path='/category/:id' component={HomeScreen} />
-            <Route path='/' exact={true} component={HomeScreen} /> */}
             </div>
           </main>
           <footer className='footer'>All right reserved.</footer>
@@ -64,8 +63,4 @@ function App() {
   );
 }
 
-export{
-  App,
-  openMenu,
-  closeMenu
-} ;
+export { App, openMenu, closeMenu };
